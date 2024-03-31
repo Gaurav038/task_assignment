@@ -24,7 +24,7 @@ app.listen(process.env.port, async () => {
         await connection;
         console.log("Database connected..")
     } catch (error) {
-        console.log("Error on connecting database")
+        console.log("Error on connecting database",error)
     }
 
     console.log(`Server is running on port no ${process.env.port}`)
