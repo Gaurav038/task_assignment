@@ -19,7 +19,7 @@ app.get("*", (req, res) =>
   res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
 );
 
-app.listen(process.env.port, async () => {
+app.listen(process.env.PORT || 8000, async () => {
     try {
         await connection;
         console.log("Database connected..")
@@ -27,5 +27,5 @@ app.listen(process.env.port, async () => {
         console.log("Error on connecting database",error)
     }
 
-    console.log(`Server is running on port no ${process.env.port}`)
+    console.log(`Server is running on port no ${process.env.PORT}`)
 })
