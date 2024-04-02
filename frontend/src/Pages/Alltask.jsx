@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import {serverAPI} from '../api'
 
 const Alltask = () => {
   const [tasks, setTasks] = useState([]);
@@ -15,7 +16,7 @@ const Alltask = () => {
     console.log("Filter Category:", filterCategory);
     axios
       .get(
-        `http://localhost:8000/tasks/allTask/?priority=${filterPriority}&category=${filterCategory}`
+        `${serverAPI}/tasks/allTask/?priority=${filterPriority}&category=${filterCategory}`
       )
       .then((response) => {
         setTasks(response.data);
@@ -31,7 +32,7 @@ const Alltask = () => {
     setLoading(true);
     setError(null);
     try {
-      await axios.delete(`http://localhost:8000/tasks/delete/${taskId}`);
+      await axios.delete(`${serverAPI}/tasks/delete/${taskId}`);
       setTasks(tasks.filter((task) => task._id !== taskId));
     } catch (error) {
       console.error("Error on deleting task:", error);

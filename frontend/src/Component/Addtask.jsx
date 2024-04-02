@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { serverAPI } from "../api";
 
 const AddTask = () => {
   const [title, setTitle] = useState("");
@@ -16,7 +17,7 @@ const AddTask = () => {
     setError(null);
     setSuccess(false);
     try {
-      const response = await axios.post("http://localhost:8000/tasks/add", {
+      const response = await axios.post(`${serverAPI}/tasks/add`, {
         title,
         description,
         priority,

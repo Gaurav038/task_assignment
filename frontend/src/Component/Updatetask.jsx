@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import { serverAPI } from "../api";
 
 const UpdateTask = () => {
   const [title, setTitle] = useState("");
@@ -17,7 +18,7 @@ const UpdateTask = () => {
   const fetchTaskById = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/tasks/task/${taskId}`
+        `${serverAPI}/tasks/task/${taskId}`
       );
       if (response.data.statusCode === 200) {
         setTitle(response?.data?.data[0]?.title);
@@ -35,7 +36,7 @@ const UpdateTask = () => {
     setSuccess(false);
     try {
       const response = await axios.patch(
-        `http://localhost:8000/tasks/edit/${taskId}`,
+        `${serverAPI}/tasks/edit/${taskId}`,
         {
           title,
           description,
